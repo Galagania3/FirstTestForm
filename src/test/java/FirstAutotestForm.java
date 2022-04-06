@@ -52,7 +52,7 @@ public class FirstAutotestForm {
         //$("#example-modal-sizes-title-lg").shouldHave(text("Thanks for submitting the form"));
 
 
-        $(".modal-body") .$(".tbody") .$()
+        $(".modal-body") .$(".tbody");
     }
 }
 
