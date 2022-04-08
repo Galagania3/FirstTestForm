@@ -17,45 +17,51 @@ public class FirstAutotestForm {
 
     @Test
     void Test321 () throws InterruptedException {
+
+        //запишем переменные
+        String userfirstName = "Ivan";
+        String userlastName = "Ivanov";
+        String userEmail = "Ivanov1337@gmail.com";
+        String userphonenumber = "6666666655";
+        String useraddress = "123 street";
+        String userstate = "Uttar Pradesh";
+        String usercity = "Agra";
+
         //open test site
         open("https://demoqa.com/automation-practice-form");
 
-        $("#firstName").setValue("Ivan");
-        $("#lastName").setValue("Ivanov");
-        $("#userEmail").setValue("Ivanov1337@gmail.com");
+        //set value
+        $("#firstName").setValue(userfirstName);
+        $("#lastName").setValue(userlastName);
+        $("#userEmail").setValue(userEmail);
         $("[for=\"gender-radio-3\"]").click();
-        //$("#gender-radio-1").click();
-        $("#userNumber").setValue("6666666655");
-        $("#dateOfBirthInput").setValue("12 Jan 1989").pressEnter();
-        //$("#subjects-label").click();
+        $("#userNumber").setValue(userphonenumber);
+        $("#dateOfBirthInput").click();
+        $x("//select[@class=\"react-datepicker__month-select\"]//option[@value=\"4\"]").click();
+        $x("//select[@class=\"react-datepicker__year-select\"]//option[@value=\"1989\"]").click();
+        $x("//div[@class=\"react-datepicker__week\"]//div[text()=\"11\"]").click();
+        $x("//input[@id=\"subjectsInput\"]").setValue("En").pressEnter();
+        $x("//input[@id=\"subjectsInput\"]").setValue("Ma").pressEnter();
         $("[for=\"hobbies-checkbox-1\"]").click();
         $("[for=\"hobbies-checkbox-2\"]").click();
         $("[for=\"hobbies-checkbox-3\"]").click();
-        //$("#hobbies-checkbox-1").click();
-        //$("#hobbies-checkbox-2").click();
-        //$("#hobbies-checkbox-3").click();
-        //$("#currentAddress").setValue("123 street");
+        $("#currentAddress").setValue(useraddress);
         $("#state").click();
-        $("#stateCity-wrapper").$(byText("Uttar Pradesh")).click();
+        $("#stateCity-wrapper").$(byText(userstate)).click();
         $("#city").click();
-        $("#stateCity-wrapper").$(byText("Agra")).click();
-        //$("#react-select-3-input").setValue("Uttar Pradesh").pressEnter();
-        //TimeUnit.SECONDS.sleep(2);
-        //$("#react-select-4-input").setValue("Delhi").pressEnter();
-        //$(".css-1hwfws3").$(".css-1uccc91-singleValue").setValue("Uttar Pradesh");
-        //$("#state").setValue("Uttar Pradesh");
-        //$("#city").setValue("Delhi");
-        //TimeUnit.SECONDS.sleep(3);
+        $("#stateCity-wrapper").$(byText(usercity)).click();
         $("#submit").click();
-        TimeUnit.SECONDS.sleep(3);
-        //$("#subjects-label").pressEnter();
-        //$("#example-modal-sizes-title-lg").shouldHave(text("Thanks for submitting the form"));
+        TimeUnit.SECONDS.sleep(2); //просто увидеть значения
 
-
-        $(".modal-body") .$(".tbody");
+        //test result table
+        $x("//td[text()='Student Name']").parent().shouldHave(text(userfirstName + " " + userlastName));
+        $x("//td[text()='Student Email']").parent().shouldHave(text(userEmail));
+        $x("//td[text()='Gender']").parent().shouldHave(text("Other"));
+        $x("//td[text()='Mobile']").parent().shouldHave(text(userphonenumber));
+        $x("//td[text()='Date of Birth']").parent().shouldHave(text("11 May,1989"));
+        $x("//td[text()='Subjects']").parent().shouldHave(text("English, Maths"));
+        $x("//td[text()='Hobbies']").parent().shouldHave(text("Sports, Reading, Music"));
+        $x("//td[text()='Address']").parent().shouldHave(text(useraddress));
+        $x("//td[text()='State and City']").parent().shouldHave(text(userstate + " " + usercity));
     }
 }
-
-
-//class=" css-1uccc91-singleValue"   css-1uccc91-singleValue    react-select-4-input//
-//$x("//td[text()='Student Name']").parent().shouldHave(text("Ivan Ivanov"));
