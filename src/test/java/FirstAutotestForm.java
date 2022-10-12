@@ -51,7 +51,7 @@ public class FirstAutotestForm {
         $("#city").click();
         $("#stateCity-wrapper").$(byText(usercity)).click();
         $("#submit").click();
-        TimeUnit.SECONDS.sleep(2); //просто увидеть значения
+        TimeUnit.SECONDS.sleep(4); //просто увидеть значения
 
         //test result table
         $x("//td[text()='Student Name']").parent().shouldHave(text(userfirstName + " " + userlastName));
