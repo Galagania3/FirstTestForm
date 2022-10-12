@@ -13,12 +13,7 @@ import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.*;
 import static test.TestData.*;
 
-public class FirstAutotestFormWithPageObjects {
-
-    @BeforeAll
-    static void Test22() {
-        Configuration.startMaximized = true;
-    }
+public class FirstAutotestFormWithPageObjects extends TestBase {
 
     @Test
     void Test321() throws InterruptedException {
